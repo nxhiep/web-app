@@ -1,0 +1,489 @@
+@import './mixin.scss';
+
+.study-game-panel {
+    $correct-answer-color: #00b900;
+    $in-correct-answer-color: red;
+
+    $left-width: 300px;
+    $topic-line: 100px;
+    padding-top: 60px;
+
+    .topic-congratulations-panel {
+        background: url('../images/congratutation-left.png') no-repeat, 
+                    url('../images/congratutation-center.png') no-repeat, 
+                    url('../images/congratutation-right.png') no-repeat;
+        background-position: left bottom, center bottom, right bottom;
+        @include makeBox(null);
+        padding: 30px;
+        height: 330px;
+        text-align: center;
+
+        h1 {
+            color: #d3ad3a;
+        }
+    }
+
+    .question-view-study-game {
+        @include makeBox(null);
+        margin-bottom: 30px;
+    }
+
+    .questions-panel.question-view-study-game {
+        overflow-y: auto;
+        height: 450px;
+    }
+
+    .next-part-button {
+        margin: 15px auto;
+        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    @include makeScrollStyle('.question-view-study-game', 7px, 7px, 7px, #bdbdbd);
+
+    .question-progress-panel {
+        height: 70px;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        @include makeBox(null);
+        margin-bottom: 30px;
+
+        .topic-name {
+            width: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @include makeScrollStyle('.scroll-panel', 5px, 7px, 5px, #bdbdbd);
+
+        .scroll-panel {
+            overflow-x: auto;
+            overflow-y: hidden;
+            width: calc(100% - 160px);
+            position: relative;
+            height: 70px;
+
+            .list-question-panel {
+                display: flex;
+                align-items: center;
+                width: calc(100% - 10px);
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 100%;
+                padding-left: 10px;
+
+                .question-item {
+                    width: 40px;
+                    height: 40px;
+                    background-color: #f1f1f1;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-right: 20px;
+                    border-radius: 3px;
+                    flex: 0 0 auto;
+                    position: relative;
+
+                    .icon {
+                        font-size: 15px;
+                        top: 1px;
+                        right: 2px;
+                        position: absolute;
+                    }
+                }
+                .question-item.border-current-question {
+                    // box-shadow: 0px 0px 5px 1px #333;
+                    border: 2px solid var(--main-color);
+                }
+                .question-item.correct {
+                    background-color: $correct-answer-color;
+                    color: white;
+                }
+
+                .question-item.incorrect {
+                    background-color: $in-correct-answer-color;
+                    color: white;
+                }
+            }
+        }
+    }
+
+    .topic-info-panel {
+        height: 70px;
+        width: 100%;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        @include makeBox(null);
+        margin-bottom: 30px;
+    }
+
+    .question-result-info {
+        background-color: var(--main-color);
+        color: white;
+        border-top-left-radius: 3px;
+        border-top-right-radius: 3px;
+
+        .item {
+            padding: 10px 0;
+            text-align: center;
+
+            >:first-child {
+                color: #ddd;
+            }
+
+            .MuiSvgIcon-root {
+                font-size: 18px;
+                position: relative;
+                top: -3px;
+            }
+        }
+
+        .item-line {
+            width: 1px;
+            background-color: white;
+            height: 40px;
+        }
+    }
+
+    .parent-topic-tree-panel {
+        @include makeBox(null);
+        .box-topic-tree-panel {
+            padding: 20px;
+            height: 400px;
+        }
+        @include makeScrollStyle('.box-topic-tree-panel', 7px, 7px, 7px, #bdbdbd);
+
+        .topic-tree-panel {
+            width: $left-width;
+            position: relative;
+            margin: 0 auto;
+
+            .parent-topics-row {
+
+                .topics-row {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    position: relative;
+
+                    .topic-line {
+                        position: absolute;
+                        border-top: 2px dashed #ddd;
+                        width: $topic-line;
+                        z-index: -1;
+                        top: calc(50% - 1px);
+                    }
+
+                    .topic-row-1-l-r {
+                        left: 50px;
+                    }
+
+                    .topic-row-2-l-r {
+                        left: 165px;
+                    }
+
+                    .topic-row-3-l-r-c {
+                        right: -10px;
+                        width: 60px;
+                        height: 98px;
+                        border-bottom-right-radius: 110px;
+                        border-top-right-radius: 110px;
+                        border: 2px dashed #ddd;
+                        border-left: 0;
+                    }
+
+                    .topic-row-3-l-r-c:after {
+                        content: "";
+                        position: absolute;
+                        bottom: -2px;
+                        border-top: 2px dashed #ddd;
+                        width: 50px;
+                        right: 100%;
+                    }
+
+                    .topic-row-1-r-l {
+                        width: 150px;
+                        left: calc(50% - 75px);
+                    }
+
+                    .topic-row-2-r-l-c {
+                        left: -10px;
+                        width: 60px;
+                        height: 100px;
+                        border-bottom-left-radius: 110px;
+                        border-top-left-radius: 110px;
+                        border: 2px dashed #ddd;
+                        border-right: 0;
+                    }
+
+                    .topic-row-2-r-l-c:before {
+                        content: "";
+                        position: absolute;
+                        top: -2px;
+                        border-top: 2px dashed #ddd;
+                        width: 75px;
+                        left: 100%;
+                    }
+
+                    .topic-line.active,
+                    .topic-line.active:before,
+                    .topic-line.active:after {
+                        border-top-style: solid;
+                    }
+
+                    .topic-row-3-l-r-c.active,
+                    .topic-row-2-r-l-c.active {
+                        border-style: solid;
+                    }
+
+                    .topic-item {
+                        position: relative;
+                        width: 100px;
+                        height: 100px;
+                        cursor: pointer;
+
+                        .topic-content {
+                            position: absolute;
+                            top: 20%;
+                            left: 20%;
+                            width: 60%;
+                            height: 60%;
+                            border-radius: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background: var(--main-color);
+                            color: white;
+                        }
+
+                        .topic-name {
+                            position: absolute;
+                            bottom: -10px;
+                            width: 100%;
+                            text-align: center;
+                        }
+
+                        .lds-ripple {
+                            display: none;
+                        }
+                    }
+
+                    .topic-item.active {
+                        .lds-ripple {
+                            display: block;
+                        }
+                    }
+
+                    .topic-item.completed {
+                        .topic-content {
+                            background-color: $correct-answer-color;
+                        }
+
+                        .lds-ripple div {
+                            border-color: $correct-answer-color;
+                        }
+                    }
+
+                    .topic-item.locked {
+                        .topic-content {
+                            background: white;
+                            border: 1px solid #ccc;
+
+                            svg {
+                                color: #ccc;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .parent-topics-row:nth-child(even) {
+
+                .topics-row:before,
+                .topics-row:after {
+                    content: "";
+                }
+            }
+
+            .parent-topics-row:last-child {
+                .topics-row {
+
+                    .topic-row-3-l-r-c,
+                    .topic-row-2-r-l-c {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+
+    @include makeRipple(var(--main-color))
+}
+
+// large
+@media screen and (max-width: 1919px) {
+    
+}
+
+// Ipad dọc(768 x 1024)
+@media screen and (max-width: 1440px) {
+    .study-game-panel {
+        padding-top: 30px;
+
+        .parent-topic-tree-panel {
+            .box-topic-tree-panel {
+                height: 330px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+        }
+        .question-view-study-game {
+            margin-bottom: 15px;
+        }
+        .questions-panel {
+            padding: 20px 30px;
+            height: 400px !important;
+        }
+        .next-part-button {
+            margin: 15px auto;
+        }
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    .study-game-panel {
+        .topic-congratulations-panel {
+            background: url('../images/congratutation-left.png') no-repeat, 
+                        url('../images/congratutation-right.png') no-repeat;
+            background-position: left bottom, right bottom;
+        }
+    }
+}
+
+// medium handset
+@media screen and (max-width: 1023px) {
+    .study-game-panel {
+        padding-top: 15px;
+        
+        .left-panel {
+            padding-right: 0;
+        }
+    
+        .right-panel {
+            padding-left: 0;
+            padding-top: 30px;
+        }
+
+        .question-progress-panel {
+            .topic-name {
+                width: 100px;
+            }
+            .scroll-panel {
+                width: calc(100% - 110px);
+                scroll-behavior: smooth;
+            }
+        }
+    }
+}
+
+.congratulation-alert-panel {
+    background-color: #ffff40;
+    color: black;
+    text-align: center;
+    padding: 7px 0;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    z-index: 1;
+
+    .title {
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+
+        > :first-child {
+            margin-right: 12px;
+        }
+    }
+}
+
+// small handset
+@media screen and (max-width: 768px) {
+    .congratulation-alert-panel {
+        .title {
+            font-size: 13px;
+            > :first-child {
+                font-size: 18px;
+            }
+        }
+    }
+    .study-game-panel {
+        .topic-congratulations-panel {
+            background: url('../images/congratutation-center.png') no-repeat;
+            background-position: center bottom;
+        }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .study-game-panel {
+        padding: 0 !important;
+
+        .topic-congratulations-panel {
+            box-shadow: none;
+        }
+        
+        .parent-topic-tree-panel {
+            box-shadow: none;
+            
+            .box-topic-tree-panel {
+                height: unset;
+                zoom: 0.9;
+            }
+        }
+
+        .question-progress-panel {
+            display: block;
+            height: unset;
+            margin-bottom: 10px;
+            .scroll-panel {
+                width: 100%;
+            }
+        }
+        .question-progress-panel {
+            .topic-name {
+                display: none;
+                width: unset;
+                justify-content: flex-start !important;
+                padding-left: 5px;
+            }
+        }
+        .right-panel {
+            padding-top: 0;
+        }
+        .questions-panel {
+            height: unset !important;
+            max-height: unset !important;
+            padding-bottom: 50px !important;
+            box-shadow: none !important;
+            padding: 10px;
+        }
+        .next-part-button {
+            position: fixed;
+            bottom: 5px;
+        }
+        .question-result-info {
+            border-radius: unset;
+        }
+    }
+}

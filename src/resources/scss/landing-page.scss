@@ -1,0 +1,272 @@
+@import './mixin.scss';
+
+.landing-page {
+    header {
+        background:url('../images/bg-landing-page.jpg') no-repeat;
+        background-size: cover;
+
+        .logo {
+            text-decoration: none;
+            color: white;
+            strong {
+                font-size: 30px;
+                letter-spacing: -1px;
+                line-height: 0;
+                padding-left: 2px;
+            }
+            div {
+                line-height: .6;
+                font-weight: 500;
+            }
+        }
+        .menu-appbar {
+            display: flex;
+            align-items: center;
+            ul {
+                display: flex;
+                align-items: center;
+                list-style-type: none;
+                li {
+                    margin-right: 10px;
+                    .header-button {
+                        color: white;
+                    }
+                }
+                li:last-child {
+                    margin-right: 0;
+                }
+            }
+            .header-button-right {
+                background-color: rgba(255, 255, 255, 0.5);
+            }
+            .space-header {
+                width: 100px;
+            }
+        }
+        .header-content {
+            color: white;
+            h1 {
+                font-size: 40px;
+            }
+        }
+        .header-image-content {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            .my-image {
+                display: flex;
+                align-items: flex-end;
+                img {
+                    max-width: 400px;
+                    width: 100%;
+                }
+            }
+        }
+    }
+    .feedback-slider {
+        .slick-arrow {
+            background-color: white;
+            width: 35px;
+            height: 35px;
+            @include makeBox(null);
+            border-radius: 100%;
+        }
+        .slick-arrow:before {
+            color: #333;
+        }
+        .slick-arrow:hover {
+            background-color: #673AB7;
+        }
+        .slick-arrow:hover:before {
+            color: white;
+        }
+    }
+
+    .title-block {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 20px;
+
+        .description {
+            max-width: 500px;
+            color: #555;
+        }
+    }
+
+    .statictis-apps {
+        margin-top: 30px;
+        .image-statictis-apps {
+            img {
+                max-width: 500px;
+                width: 100%;
+            }
+        }
+        .statictis-apps-items {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+
+            .statictis-app-item {
+                .image {
+                    width: 50px;
+                    height: 50px;
+                    background-color: rgba(255, 0, 0, .2);
+                    color: red;
+                    border-radius: 10px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .info {
+                    padding-top: 20px;
+                    padding-right: 20px;
+                    p {
+                        color: #555;
+                    }
+                }
+                width: 50%;
+                max-width: 250px;
+            }
+        }
+        .list-number {
+            padding: 30px 0;
+            .active-item {
+                strong {
+                    font-size: 35px;
+                    color: rebeccapurple;
+                    margin-right: 10px;
+                    font-weight: bold;
+                }
+                span {
+                    color: #555;
+                }
+            }
+        }
+    }
+    .feedback-apps {
+        background-color: #eaeaea;
+        padding: 50px 0;
+
+        .feedback-item {
+            padding: 30px 40px;
+            > div {
+                @include makeBox(null);
+                background-color: white;
+                padding: 30px;
+                color: #555;
+                .info {
+                    strong {
+                        color: #333;
+                    }
+                    .border {
+                        width: 3px;
+                        height: 40px;
+                        margin-right: 20px;
+                        background-color: #ddd;
+                    }
+                }
+            }
+            .dot-7 {
+                min-height: 168px;
+            }
+        }
+    }
+    .list-great-apps {
+        .app-info-item {
+            cursor: pointer;
+            > a {
+                padding: 0;
+                height: 100%;
+                .MuiButton-label {
+                    @include makeBox(null);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    flex-direction: column;
+                    height: 100%;
+                    width: 100%;
+                    box-sizing: border-box;
+                    padding: 15px;
+    
+                    img {
+                        border-radius: 20px;
+                    }
+                }
+            }
+            .title {
+                text-align: center;
+                margin-bottom: 15px;
+                margin-top: 7px;
+            }
+            .rating {
+                margin-top: auto;
+            }
+        }
+    }
+}
+
+@media (max-width: 500px) {
+    .landing-page {
+        header {
+            .header-tab-panel {
+                .parent-logo {
+                    padding-top: 15px;
+                }
+                .menu-appbar {
+                    flex-direction: column;
+                    ul {
+                        padding: 0;
+                        li {
+                            margin-right: 0;
+                        }
+                    }
+                    .space-header {
+                        width: unset;
+                    }
+                }
+            }
+        }
+        .statictis-apps {
+            .statictis-apps-items {
+                padding-top: 20px;
+                .statictis-app-item {
+                    width: 100%;
+                    max-width: 100%;
+                    display: flex;
+                    align-items: flex-start;
+                    justify-content: space-between;
+
+                    .info {
+                        width: calc(100% - 65px);
+                        padding: 0;
+                    }
+                }
+            }
+            .active-item {
+                text-align: center;
+            }
+        }
+        .feedback-apps {
+            padding: 10px 0;
+            .title-block {
+                margin-bottom: 0;
+            }
+            .feedback-slider {
+                .slick-arrow.slick-next {
+                    right: 0;
+                }
+                .slick-arrow.slick-prev {
+                    left: 0;
+                }
+                .slick-dots {
+                    bottom: 0;
+                    overflow-x: auto;
+                    white-space: nowrap;
+                }
+            }
+        }
+    }
+}

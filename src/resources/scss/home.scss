@@ -1,0 +1,133 @@
+@import './mixin.scss';
+
+.content-home-page {
+    flex: auto;
+    .main-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
+    .content-panel {
+        align-items: stretch;
+        justify-content: space-between;
+        flex-wrap: wrap;
+
+        .topic-item-panel {
+            @include makeBox(null);
+            padding: 20px;
+            width: calc(50% - 10px);
+            box-sizing: border-box;
+            margin-top: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            > a {
+                display: flex;
+                flex-direction: column;
+                height: 100%;
+                align-items: flex-start;
+                text-decoration: none;
+                color: inherit;
+
+                label {
+                    font-weight: 500;
+                }
+                .parent-line-progress-panel {
+                    margin-top: auto;
+                }
+    
+                p, span, font {
+                    text-indent: 0 !important;
+                }
+            }
+            > a:hover {
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.user-info-panel {
+    .user-avatar-content-panel {
+        .parent-app-info-name {
+            @include makeBox(null);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+
+            .app-info-name {
+                display: flex;
+                align-items: flex-start;
+                padding: 10px;
+                .app-child-name {
+                    padding-top: 10px;
+                    padding-left: 20px;
+
+                    strong {
+                        font-size: 20px;
+                    }
+                }
+            }
+            .link-app-store {
+                border-top: 1px solid #ddd;
+                padding-top: 15px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                a {
+                    img {
+                        width: 120px;
+                    }
+                }
+            }
+        }
+    }
+    .review-app-slider {
+        margin: -10px;
+        .review-app-item {
+            padding: 10px;
+            > div {
+                @include makeBox(null);
+                padding: 15px;
+
+                .time {
+                    color: #555;
+                    font-size: 0.9em;
+                }
+            }
+            .dot-3 {
+                min-height: 72px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .select-state-popup {
+        .MuiDialog-container {
+            .MuiPaper-root {
+            }
+        }
+    }
+    .content-home-page {
+        .content-panel {
+            .topic-item-panel {
+                width: 100%;
+            }
+        }
+    }
+    .user-info-panel {
+        .user-info-content-panel {
+            order: 2;
+
+            > p:first-child {
+                margin-top: 0;
+            }
+        }
+
+        .user-avatar-content-panel {
+            order: 1;
+            margin-top: 20px;
+        }
+    }
+}
