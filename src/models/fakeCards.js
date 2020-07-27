@@ -69,4 +69,4 @@ const fakeCards = [
         index: 0,
     }
 ];
-export {fakeCards};
+export { fakeCards };

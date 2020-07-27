@@ -1,43 +1,39 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, useParams } from "react-router-dom";
+import { Route, Switch, useParams } from "react-router-dom";
 import Routes from './routes';
-import { makeMainLoading } from './utils';
 import ReactGA from 'react-ga';
-import loadable from '@loadable/component'
+import loadable from '@loadable/component';
 // import { createBrowserHistory } from 'history';
-const HomeViewScreen = loadable(() => import('./pages/home/Home.View'));
-const LandingPageScreen = loadable(() => import('./pages/landingpage/LandingPage'));
-const ReviewViewScreen = loadable(() => import('./pages/review/Review.View'));
-const StudyViewScreen = loadable(() => import('./pages/study/Study.View'));
-const TestViewScreen = loadable(() => import('./pages/test/Test.View'));
-
+import HomeViewScreen  from'./pages/home/Home.View';
+import LandingPageScreen from'./pages/landingpage/LandingPage';
+import ReviewViewScreen from'./pages/review/Review.View';
+import StudyViewScreen  from'./pages/study/Study.View';
+import TestViewScreen  from'./pages/test/Test.View';
+import GameViewScreen  from'./pages/game/Game.ViewTS';
 initializeReactGA();
 function initializeReactGA() {
     ReactGA.initialize('UA-167769768-1');
 }
-
 function App() {
     // const history = createBrowserHistory();
     return (
         // <Router >
         // <Suspense fallback={makeMainLoading()}>
-        
-            <Switch>
-                <Route exact path={"/:appNameId/:screen"} children={<ScreenChild />}></Route>
-                <Route exact path={"/:appNameId"}>
-                    <HomeViewScreen />
-                </Route>
-                <Route exact path={"/"}>
-                    <LandingPageScreen />
-                </Route>
-            </Switch>
-        
-    );
+        <Switch>
+            <Route exact path={"/:appNameId/:screen"} children={<ScreenChild />}></Route>
+            <Route exact path={"/:appNameId"}>
+                <HomeViewScreen>
+                </HomeViewScreen>
+            </Route>
+            <Route exact path={"/"}>    
+                <LandingPageScreen />
+            </Route>
+        </Switch>
+    )           
 }
-
 function ScreenChild() {
     let { screen } = useParams();
-    screen = screen ?? '';
+    screen = screen !== null && screen !== void 0 ? screen : '';
     if (screen.startsWith(Routes.TEST_SCREEN)) {
         // console.log("screen", screen);
         let offset = screen.lastIndexOf('-');
@@ -47,17 +43,16 @@ function ScreenChild() {
             topicId = offset > -1 ? parseInt(screen.substring(offset, screen.length)) : -1;
         }
         // console.log("TestViewScreen topicId ", topicId);
-        return <TestViewScreen topicId={topicId} />;
+        return React.createElement(TestViewScreen, { topicId: topicId });
     }
-    if (screen.startsWith(Routes.REVIEW_SCREEN)) {
-        return <ReviewViewScreen />;
-    }
+        if (screen.startsWith(Routes.REVIEW_SCREEN)) {
+            return React.createElement(ReviewViewScreen, null);
+        }
     if (screen.length > 0) {
-        return <StudyViewScreen />;
+        return React.createElement(StudyViewScreen, null);
     }
-    return <HomeViewScreen />;
+    return React.createElement(HomeViewScreen, null);
 }
-
 /*
 <Route exact path={"/:appNameId/" + Routes.TEST_SCREEN}>
   <TestViewScreen />
@@ -66,5 +61,4 @@ function ScreenChild() {
   <ReviewViewScreen />
 </Route>
 */
-
 export default App;
