@@ -1,11 +1,11 @@
 import "core-js/web";
 import "regenerator-runtime/runtime";
 import express from 'express';
-import renderer from './utils/renderer.js';
-import configureStore from './utils/configureStore';
-import rootSaga from './redux/sagas';
+import renderer from './src/utils/renderer.js';
+import configureStore from './src/utils/configureStore';
+import rootSaga from './src/redux/sagas';
 import chalk from 'chalk'
-import * as actions from './redux/actions/index';
+import * as functions from 'firebase-functions'
 
 
 const app = express();
@@ -51,5 +51,5 @@ app.use( (req, res) => {
 app.listen(3000, () => {
     console.log("Server is running on 3000");
 });
-exports.app = functions.https.onRequest(app);
+export let ssr = functions.https.onRequest(app);
 //# sourceMappingURL=server.js.map

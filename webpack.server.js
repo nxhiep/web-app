@@ -4,7 +4,7 @@ const svgToMiniDataURI = require('mini-svg-data-uri');
 module.exports = {
     // the root file
     target: "node",
-    entry: './src/server.js',
+    entry: './index.js',
 
     //tell webpack where to put output file that is generated
     output: {
