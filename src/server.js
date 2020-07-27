@@ -51,4 +51,5 @@ app.use( (req, res) => {
 app.listen(3000, () => {
     console.log("Server is running on 3000");
 });
+exports.app = functions.https.onRequest(app);
 //# sourceMappingURL=server.js.map

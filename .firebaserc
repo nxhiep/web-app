@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "deploy-temp"
+    "default": "web-app-7b620",
+    "ssr": "web-app-7b620"
   }
 }
