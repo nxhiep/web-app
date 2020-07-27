@@ -6,7 +6,9 @@ const Image = ({ src, alt = '', width = '', height = '', onClick = () => { }, on
     useEffect(() => {
         setLoading(true);
     }, [src]);
+    
     const [url, setUrl] = useState(src);
+    console.log(url)
     return (React.createElement("span", { className: 'my-image' + (className ? ' ' + className : '') },
         loading ? React.createElement(LoadingWidget, null) : '',
         React.createElement("img", { style: loading ? { display: 'none' } : {}, src: url, alt: alt, width: width, height: height, onLoad: () => {

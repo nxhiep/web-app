@@ -7,7 +7,8 @@
         "dev": "npm-run-all --parallel dev:*",
         "dev:server": "nodemon --watch build --exec node build/bundle.js",
         "dev:build:server": "webpack --config webpack.server.js --watch",
-        "dev:build:client": "webpack --config webpack.client.js --watch"
+        "dev:build:client": "webpack --config webpack.client.js --watch",
+        "babel" : "node_modules/.bin/babel src -d functions/src"
     },
     "dependencies": {
         "@babel/cli": "^7.10.5",

@@ -14,11 +14,11 @@ class Config {
     static HTTP_REQUEST_ERROR = 500;
     static LIMIT_USER_RATING = 10;
     static GAME_STATUS_TESTING = 0;
-    static WEAK_QUESTION = { id: 1, name: 'Weak Question', image: require('./resources/images/weak.svg') };
-    static MEDIUM_QUESTION = { id: 2, name: 'Medium Question', image: require('./resources/images/medium.svg') };
-    static STRONG_QUESTION = { id: 3, name: 'Strong Question', image: require('./resources/images/strong.svg') };
-    static ALL_FAMILIAR_QUESTION = { id: 4, name: 'All Familiar Question', image: require('./resources/images/test.svg') };
-    static YOUR_FAVORITE_QUESTION = { id: 5, name: 'Your Favorite Question', image: require('./resources/images/heart.svg') };
+    static WEAK_QUESTION = { id: 1, name: 'Weak Question', image: require('./resources/images/weak.svg').default };
+    static MEDIUM_QUESTION = { id: 2, name: 'Medium Question', image: require('./resources/images/medium.svg').default };
+    static STRONG_QUESTION = { id: 3, name: 'Strong Question', image: require('./resources/images/strong.svg').default };
+    static ALL_FAMILIAR_QUESTION = { id: 4, name: 'All Familiar Question', image: require('./resources/images/test.svg').default };
+    static YOUR_FAVORITE_QUESTION = { id: 5, name: 'Your Favorite Question', image: require('./resources/images/heart.svg').default };
     static LEVEL_QUESTION = [this.WEAK_QUESTION, this.MEDIUM_QUESTION, this.STRONG_QUESTION, this.ALL_FAMILIAR_QUESTION, this.YOUR_FAVORITE_QUESTION];
     static STUDY_GAME = 0;
     static TEST_GAME = 1;

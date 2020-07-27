@@ -1,6 +1,5 @@
 import { Box, Grid } from '@material-ui/core';
 import React from 'react';
-import Logo from '../resources/images/logo.png';
 import { FixedContainer } from './Widgets';
 import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
@@ -17,7 +16,7 @@ const Footer = ({ alt = '' }) => {
             <div className={'footer-content'}>
                 <Grid container direction="row" alignItems="center" justify="space-between">
                     <Link to="/" className={'logo-web'}>
-                        <img alt={alt} src={Logo} />
+                        <img alt={alt} src={require('../resources/images/logo.svg').default} />
                     </Link>
                 </Grid>
                 {/* <LanguagePanel /> */}

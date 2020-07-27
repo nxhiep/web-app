@@ -3,7 +3,6 @@ import { useTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
-import Logo from '../resources/images/logo.png';
 import Routes from '../routes';
 import { FixedContainer } from './Widgets';
 const Header = ({ alt = '' }) => {
@@ -44,7 +43,7 @@ const HeaderMobile = ({ alt }) => {
                     event.preventDefault();
                     history.push('/');
                 } },
-                React.createElement("img", { alt: alt, src: Logo })),
+                React.createElement("img", { alt: alt, src: require('../resources/images/logo.svg').default })),
             React.createElement(HeaderTabPanel, null))));
 };
 const HeaderPC = ({ alt }) => {
@@ -57,7 +56,7 @@ const HeaderPC = ({ alt }) => {
                             event.preventDefault();
                             history.push('/');
                         } },
-                        React.createElement("img", { alt: alt, src: Logo })),
+                        React.createElement("img", { alt: alt, src: require('../resources/images/logo.svg').default })),
                     React.createElement(HeaderTabPanel, null),
                     React.createElement("div", { className: "temp-panel" }),
                     React.createElement("div", { className: "temp-panel" }))))));

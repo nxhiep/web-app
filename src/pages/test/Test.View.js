@@ -19,7 +19,6 @@ import '../../resources/scss/test.scss';
 import EndTestView from './EndTest';
 import { TestProgressPanel, TestQuestionPanel } from './TestComponent';
 import CustomTestView from './TestSettingView';
-import Logo from '../../resources/images/logo.png';
 import ReactGA from 'react-ga';
 const TestViewScreen = ({ getAppInfo, appInfoState, topicId = -1 }) => {
     let { appNameId } = useParams();

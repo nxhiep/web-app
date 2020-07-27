@@ -17,30 +17,6 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader",
-                options: {
-                    presets: [
-                        "@babel/preset-react",
-                        [
-                            "@babel/preset-env",
-                            {
-                                "targets": {
-                                    "chrome": "84",
-                                    "esmodules": true
-                                },
-                                "useBuiltIns": "entry",
-                                "corejs": 3
-                            }
-                        ]
-                    ],
-                    plugins: [
-                        "@babel/plugin-proposal-class-properties",
-                        // "@babel/plugin-transform-regenerator",
-                        "@babel/plugin-transform-runtime",
-                        // "@babel/plugin-transform-async-to-generator",
-                        "module:fast-async",
-                        "inline-react-svg"
-                    ]
-                }
             },
             {
                 test: /\.css$/,

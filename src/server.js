@@ -10,7 +10,11 @@ import * as actions from './redux/actions/index';
 
 const app = express();
 app.use(express.static('public'));
-app.use( (req, res) => {
+app.use( (req, res) => {    
+    console.log(req.url)
+    if (req.url.search('png') !== -1) {
+        res.set('Content-Type', 'png')
+    }
     const store = configureStore();
     const context = {};
     if (context.url) {
