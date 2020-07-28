@@ -10,13 +10,13 @@ import Question from '../../models/QuestionX';
 import { onBookmark } from '../../redux/actions';
 import { loadGame, onSelectedChoice } from '../../redux/actions/game';
 import { GameState } from '../../redux/reducers/game';
-import { useTheme } from '@material-ui/core/styles';
+import {  withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 var arrayIndex = new Array();
 const TestQuestionPanelUI = ({ initial = 0, questionProgress = {}, className = "", loadGame = () => {
     // console.log("vkl");
-}, gameType = Config.TEST_GAME, gameState = GameState.init(), appId, topicId, index = 0, onBookmark, testSetting }) => {
-    const theme = useTheme();
+}, gameType = Config.TEST_GAME, gameState = GameState.init(), appId, topicId, index = 0, onBookmark, testSetting, theme }) => {
+    // const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     // console.log("TTTTTTTTTTTTTTTTTTTTTTTTTTTTTEST GAME GameState ", gameState, 'testSetting', testSetting);
     useEffect(() => {
@@ -162,7 +162,7 @@ const mapDispatchToProps = {
     onBookmark: (question) => onBookmark(question)
 };
 const AnswerButton = connect(null, mapDispatchToProps)(AnswerButtonUI);
-const TestQuestionPanel = connect(mapStateToProps, mapDispatchToProps)(TestQuestionPanelUI);
+const TestQuestionPanel = connect(mapStateToProps, mapDispatchToProps)(withTheme(TestQuestionPanelUI));
 const ChoicesPanel = connect(mapTestSettingStateToProps, null)(ChoicesPanelUI);
 const TestProgressPanel = connect(mapStateToProps, null)(TestProgressPanelUI);
 export { TestQuestionPanel, TestProgressPanel };

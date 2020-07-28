@@ -1,11 +1,11 @@
 import { Box, Grid } from '@material-ui/core';
 import React from 'react';
 import { FixedContainer } from './Widgets';
-import { useTheme } from '@material-ui/core/styles';
+import {  withTheme  } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import {Link} from 'react-router-dom'
-const Footer = ({ alt = '' }) => {
-    const theme = useTheme();
+const Footer = ({ alt = '' , theme}) => {
+    // const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     console.log("useMediaQuery isMobile", isMobile);
     if (isMobile) {
@@ -24,4 +24,4 @@ const Footer = ({ alt = '' }) => {
         </FixedContainer>
     </Box>);
 };
-export default Footer;
+export default withTheme(Footer);

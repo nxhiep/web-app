@@ -1,5 +1,5 @@
 import { Button, Fab, Grid, IconButton, Tooltip } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import {  withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ArrowBack as ArrowBackIcon, ArrowRightAlt as ArrowRightAltIcon, Assignment as AssignmentIcon, Check as CheckIcon, Close as CloseIcon, Done as DoneIcon, DoneAll as DoneAllIcon, Lock as LockIcon, LockOpen as UnLockIcon, ViewList as ViewListIcon } from '@material-ui/icons';
 import React, { Component, useEffect, useState } from 'react';
@@ -24,7 +24,7 @@ import { isObjEmpty, stringReplaceUrl } from '../../utils';
 import { QuestionsPanelTS } from '../game/Game.ViewTS';
 import ReactGA from 'react-ga';
 const questionsX = new Map();
-const StudyViewScreen = ({ getAppInfo, appInfoState }) => {
+const StudyViewScreen = ({ getAppInfo, appInfoState, theme }) => {
     let { appNameId, screen } = useParams();
     let topicId = -1;
     if (screen) {
@@ -32,7 +32,7 @@ const StudyViewScreen = ({ getAppInfo, appInfoState }) => {
         topicId = offset > -1 ? parseInt(screen.substring(offset, screen.length)) : -1;
     }
     appNameId = appNameId !== null && appNameId !== void 0 ? appNameId : '';
-    const theme = useTheme();
+    // const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     useEffect(() => {
         getAppInfo(appNameId);
@@ -311,7 +311,6 @@ const FloatingButtonTest = ({ currentTopic }) => {
 };
 const QuestionProgressPanelUI = (props) => {
     var _a, _b, _c;
-    // const theme = useTheme();
     // console.log("QuestionProgressPanelUI props", props, 'theme', theme);
     let topic = props === null || props === void 0 ? void 0 : props.topic;
     let gameState = props === null || props === void 0 ? void 0 : props.gameState;
@@ -574,4 +573,4 @@ const mapStateToPropsMain = (state, ownProps) => {
 const mapDispatchToPropsMain = (dispatch) => ({
     getAppInfo: (appNameId) => dispatch(getAppInfo(appNameId))
 });
-export default connect(mapStateToPropsMain, mapDispatchToPropsMain)(StudyViewScreen);
+export default connect(mapStateToPropsMain, mapDispatchToPropsMain)(withTheme(StudyViewScreen));

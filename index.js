@@ -7,11 +7,11 @@ import rootSaga from './src/redux/sagas';
 import chalk from 'chalk'
 import * as functions from 'firebase-functions'
 
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 app.use(express.static('public'));
 app.use( (req, res) => {    
-    console.log(req.url)
     if (req.url.search('png') !== -1) {
         res.set('Content-Type', 'png')
     }
@@ -28,28 +28,10 @@ app.use( (req, res) => {
     // console.log(store.getState());
     const content = renderer(req, store, context, store.getState());
     res.status(200).send(content)
-    // .done is resolved when store.close() send an END event
-    // store.runSaga(rootSaga).toPromise().then( () => {
-    //     const preloadedState = store.getState();
-    //     const content = renderer(req, store, context, preloadedState);
-
-
-    //     return res.status(200).send(content);
-    // })
-        // .catch((e) => {
-        //     console.log(e.message)
-        //     return res.status(500).send(e.message)
-        // })
-
-
-    // Trigger sagas for component to run
-    // https://github.com/yelouafi/redux-saga/issues/255#issuecomment-210275959
-
-    // Dispatch a close event so sagas stop listening after they're resolved
     store.close();
 });
-app.listen(3000, () => {
-    console.log("Server is running on 3000");
+app.listen(PORT, () => {
+    console.log(`Server is running on ${PORT}`);
 });
 export let ssr = functions.https.onRequest(app);
 //# sourceMappingURL=server.js.map

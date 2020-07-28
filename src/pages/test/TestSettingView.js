@@ -7,7 +7,7 @@ import Config from '../../config';
 import { endTest, getTopicsByParentId, loadTestSettingByTopicId } from '../../redux/actions';
 import '../../resources/scss/main.scss';
 import '../../resources/scss/test.scss';
-import { useTheme } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 const CustomTestView = ({ testSetting, topicState, appInfo, topicId, startNewTest, endTest, loadTestSetting, getTopicsByParentId, showButtonContinue, onContinueTest, stateInfoState }) => {
     const [openModal, setOpenModal] = useState(false);
@@ -150,7 +150,7 @@ const MultipleSelectBox = (props) => {
     mainTopics.forEach((item) => {
         mapTopicId.set(item.id, item);
     });
-    const theme = useTheme();
+    // const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     let width;
     if (isMobile) {
@@ -196,5 +196,5 @@ const mapDispatchToProps = {
 const mapStateToPropsModal = (state, ownProps) => {
     return Object.assign({ topicState: state.topicReducer, testSetting: state.testSettingState.currentSetting }, ownProps);
 };
-const CustomTestModal = connect(mapStateToPropsModal, null)(CustomTestModalUI);
+const CustomTestModal = connect(mapStateToPropsModal, null)(withTheme(CustomTestModalUI));
 export default connect(mapStateToProps, mapDispatchToProps)(CustomTestView);

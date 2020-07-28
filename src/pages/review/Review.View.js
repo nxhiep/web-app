@@ -1,5 +1,5 @@
 import { Grid, IconButton } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import {  withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ArrowBack as ArrowBackIcon } from '@material-ui/icons';
 import React, { Component, useEffect } from 'react';
@@ -21,7 +21,7 @@ import '../../resources/scss/review.scss';
 import { checkLoadedReceiveProps } from '../../utils';
 import { QuestionsPanelTS } from '../game/Game.ViewTS';
 import ReactGA from 'react-ga';
-const ReviewViewScreen = ({ getAppInfo, appInfoState }) => {
+const ReviewViewScreen = ({ getAppInfo, appInfoState , theme}) => {
     let { appNameId, screen } = useParams();
     let topicId = -1;
     if (screen) {
@@ -29,7 +29,7 @@ const ReviewViewScreen = ({ getAppInfo, appInfoState }) => {
         topicId = offset > -1 ? parseInt(screen.substring(offset, screen.length)) : -1;
     }
     appNameId = appNameId !== null && appNameId !== void 0 ? appNameId : '';
-    const theme = useTheme();
+    // const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     useEffect(() => {
         getAppInfo(appNameId);
@@ -184,4 +184,4 @@ const mapStateToPropsMain = (state, ownProps) => {
 const mapDispatchToPropsMain = (dispatch) => ({
     getAppInfo: (appNameId) => dispatch(getAppInfo(appNameId))
 });
-export default connect(mapStateToPropsMain, mapDispatchToPropsMain)(ReviewViewScreen);
+export default connect(mapStateToPropsMain, mapDispatchToPropsMain)(withTheme(ReviewViewScreen));

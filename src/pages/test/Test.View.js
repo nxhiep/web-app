@@ -1,5 +1,5 @@
 import { Button, Grid, IconButton } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import { useTheme, withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import { ArrowBack as ArrowBackIcon } from '@material-ui/icons';
 import React, { Component, useEffect } from 'react';
@@ -20,10 +20,10 @@ import EndTestView from './EndTest';
 import { TestProgressPanel, TestQuestionPanel } from './TestComponent';
 import CustomTestView from './TestSettingView';
 import ReactGA from 'react-ga';
-const TestViewScreen = ({ getAppInfo, appInfoState, topicId = -1 }) => {
+const TestViewScreen = ({ getAppInfo, appInfoState, topicId = -1, theme }) => {
     let { appNameId } = useParams();
     appNameId = appNameId !== null && appNameId !== void 0 ? appNameId : '';
-    const theme = useTheme();
+    // const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     useEffect(() => {
         getAppInfo(appNameId);
@@ -142,4 +142,4 @@ const mapDispatchToPropsMain = (dispatch) => ({
     getAppInfo: (appNameId) => dispatch(getAppInfo(appNameId))
 });
 const TestView = connect(mapStateToProps, mapDispatchToProps)(TestViewUI);
-export default connect(mapStateToPropsMain, mapDispatchToPropsMain)(TestViewScreen);
+export default connect(mapStateToPropsMain, mapDispatchToPropsMain)(withTheme(TestViewScreen));

@@ -1,8 +1,8 @@
 import { Button, Collapse, Grid } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import {  withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Rating from '@material-ui/lab/Rating';
-import React, { Suspense, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactHtmlParser from 'react-html-parser';
 import { connect } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -21,7 +21,7 @@ import '../../resources/scss/main.scss';
 import { formatDate, isLoadingNew } from '../../utils';
 import HomeContent from './HomeContent';
 import ReactGA from 'react-ga';
-const HomeViewScreen = ({ appInfoState, getAppInfo, stateInfoState }) => {
+const HomeViewScreen = ({ appInfoState, getAppInfo, stateInfoState , theme}) => {
     var _a, _b;
     const [openPopupChangeState, setOpenPopupChangeState] = useState(false);
     let { appNameId } = useParams();
@@ -29,7 +29,7 @@ const HomeViewScreen = ({ appInfoState, getAppInfo, stateInfoState }) => {
     if (!appNameId) {
         appNameId = '';
     }
-    const theme = useTheme();
+    // const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     useEffect(() => {
         getAppInfo(appNameId);
@@ -82,6 +82,8 @@ const AppInfoUI = ({ appInfoState, appNameId }) => {
     const [openCollapse, setOpenCollapse] = useState(false);
     let appInfo = appInfoState === null || appInfoState === void 0 ? void 0 : appInfoState.data[appNameId];
     if (isLoadingNew(appInfoState) || !appInfo) {
+
+
         return React.createElement(LoadingWidget, null);
     }
     let content = appInfo.content ? appInfo.content : '';
@@ -148,7 +150,7 @@ const mapDispatchToPropsAppInfo = (dispatch) => ({
     getAppInfo: (appNameId) => dispatch(getAppInfo(appNameId)),
 });
 const AppInfoWidget = connect(mapStateToPropsAppInfo, null)(AppInfoUI);
-export default connect(mapStateToPropsAppInfo, mapDispatchToPropsAppInfo)(HomeViewScreen);
+export default connect(mapStateToPropsAppInfo, mapDispatchToPropsAppInfo)(withTheme(HomeViewScreen));
 const mapStateToPropsUserRate = (state, ownProps) => (Object.assign({ userRateState: state.userRateState }, ownProps));
 const mapDispatchToPropsUserRate = (dispatch) => ({
     getUserRate: (appId) => dispatch(getUserRate(appId)),

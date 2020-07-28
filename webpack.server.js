@@ -5,11 +5,9 @@ module.exports = {
     // the root file
     target: "node",
     entry: './index.js',
-
-    //tell webpack where to put output file that is generated
     output: {
-        filename: 'bundle.js',
-        path: path.resolve(__dirname, 'build')
+        filename: 'index.js',
+        path: path.resolve(__dirname, 'functions')
     },
     mode: "production",
     module: {
@@ -20,14 +18,8 @@ module.exports = {
                 loader: "babel-loader",
             },
             {
-                test: /\.css$/,
-                use: [
-                    'css-loader',
-                    'file-loader'
-                ]
-            },
-            {
                 test: /\.svg$/i,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'url-loader',
@@ -39,23 +31,15 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/i,
+                exclude: /node_modules/,
                 use: [
-                    // Creates `style` nodes from JS strings
-                    'file-loader',
-                    // Translates CSS into CommonJS
                     'css-loader',
                     'sass-loader',
-                    // Compiles Sass to CSS
-                    // {
-                    //     loader: 'sass-loader',
-                    //     options: {
-                    //         name: 'assets/[hash].[ext]',
-                    //     }
-                    // }
                 ],
             },
             {
                 test: /\.(png|jpe?g|gif)$/i,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -65,18 +49,6 @@ module.exports = {
                     },
                 ],
             },
-            // {
-            //     test: /\.(woff|woff2|eot|ttf|otf)$/,
-            //     use: [
-            //         {
-            //             loader: 'file-loader',
-            //             options: {
-            //                 name: 'assets/[name].[ext]',
-            //                 esModule: true
-            //             }
-            //         }
-            //     ],
-            // },
         ]
     },
     externals: [nodeExternals()]

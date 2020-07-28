@@ -8,7 +8,7 @@ module.exports = {
     //tell webpack where to put output file that is generated
     output : {
         filename : 'bundle.js',
-        path : path.resolve(__dirname, 'public')
+        path : path.resolve(__dirname, 'functions' ,'public')
     },
     mode: "production",
     module: {
@@ -46,7 +46,7 @@ module.exports = {
                 test: /\.(png|jpe?g|gif)$/i,
                 use: [
                     {
-                        loader: 'url-loader',
+                        loader: 'file-loader',
                         options: {
                             name: 'assets/[hash].[ext]',
                         }
@@ -62,18 +62,6 @@ module.exports = {
                             generator: (content) => svgToMiniDataURI(content.toString()),
                         },
                     },
-                ],
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: 'assets/[name].[ext]',
-                            esModule: false
-                        }
-                    }
                 ],
             },
         ]

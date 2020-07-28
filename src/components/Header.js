@@ -1,12 +1,12 @@
 import { AppBar, Box, Button, Grid, Link } from '@material-ui/core';
-import { useTheme } from '@material-ui/core/styles';
+import {  withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import React from 'react';
 import { useHistory, useParams } from 'react-router-dom';
 import Routes from '../routes';
 import { FixedContainer } from './Widgets';
-const Header = ({ alt = '' }) => {
-    const theme = useTheme();
+const Header = ({ alt = '' , theme}) => {
+    // const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     // console.log('isMobile', isMobile, "width", width, 'height', height);
     if (isMobile) {
@@ -66,4 +66,4 @@ const LoginPanel = () => {
         React.createElement(Button, { variant: "text", color: "inherit", style: { marginRight: '10px', 'color': 'white' } }, "Log In"),
         React.createElement(Button, { variant: "contained", color: "default", style: { 'color': 'white', 'backgroundColor': 'rgba(255, 255, 255, 0.5)' } }, "Sign Up")));
 };
-export default Header;
+export default withTheme(Header);

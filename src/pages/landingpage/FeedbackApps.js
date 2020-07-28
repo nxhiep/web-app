@@ -6,10 +6,10 @@ import Slider from "react-slick";
 import { FixedContainer, LoadingWidget, TitleBlock } from '../../components/Widgets';
 import { getUserRatesPerfectest } from '../../redux/actions';
 import { formatDate } from '../../utils';
-import { useTheme } from '@material-ui/core/styles';
+import {  withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
-const FeedbackAppsUI = ({ getUserRatesPerfectest, userRateState }) => {
-    const theme = useTheme();
+const FeedbackAppsUI = ({ getUserRatesPerfectest, userRateState, theme }) => {
+    // const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     const settings = {
         dots: true,
@@ -59,4 +59,4 @@ const mapStateToPropsUserRate = (state, ownProps) => {
 const mapDispatchToPropsUserRate = (dispatch) => ({
     getUserRatesPerfectest: () => dispatch(getUserRatesPerfectest()),
 });
-export default connect(mapStateToPropsUserRate, mapDispatchToPropsUserRate)(FeedbackAppsUI);
+export default connect(mapStateToPropsUserRate, mapDispatchToPropsUserRate)(withTheme(FeedbackAppsUI));
