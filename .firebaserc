@@ -1,6 +1,7 @@
 {
   "projects": {
     "default": "deploy-temp",
-    "ssr": "deploy-temp"
+    "ssr": "deploy-temp",
+    "temp": "deploy-temp"
   }
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch, useParams } from "react-router-dom";
 import Routes from './routes';
 import ReactGA from 'react-ga';
-import loadable from '@loadable/component';
 // import { createBrowserHistory } from 'history';
 import HomeViewScreen  from'./pages/home/Home.View';
 import LandingPageScreen from'./pages/landingpage/LandingPage';

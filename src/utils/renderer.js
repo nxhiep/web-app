@@ -14,15 +14,14 @@ const renderer = (req, store, context, initialState) => {
         </Provider>
 
     );
+    console.log(content)
     // loadableState = await getLoadableState(content);
     return `
-        <!DOCTYPE html>
+        <!DOCTYPE html lang = "en">
         <html>
             <head>
             <meta charset="UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase.js"></script>
-            <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-functions.js"></script>
             <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
             <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
             <style>
@@ -101,7 +100,6 @@ const renderer = (req, store, context, initialState) => {
                 <script type="text/javascript" charset="utf-8">
                     window.__INITIAL_STATE__ = ${serialize(initialState)};
                 </script>
-
             </body>
         </html>
     `;
