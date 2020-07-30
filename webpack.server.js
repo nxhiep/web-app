@@ -6,8 +6,8 @@ module.exports = {
     target: "node",
     entry: './index.js',
     output: {
-        filename: 'index.js',
-        path: path.resolve(__dirname, 'functions')
+        filename: 'build.js',
+        path: path.resolve(__dirname, 'build')
     },
     mode: "production",
     module: {

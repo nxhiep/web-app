@@ -1,6 +1,4 @@
 // import "@babel/polyfill";
-import "core-js/web";
-import "regenerator-runtime/runtime";
 import { jssPreset, StylesProvider } from '@material-ui/core/styles';
 import { create } from 'jss';
 import React from 'react';

@@ -1,4 +1,5 @@
 const path = require('path');
+var HtmlWebpackPlugin = require('html-webpack-plugin'); 
 const svgToMiniDataURI = require('mini-svg-data-uri');
 module.exports = {
 
@@ -8,9 +9,9 @@ module.exports = {
     //tell webpack where to put output file that is generated
     output : {
         filename : 'bundle.js',
-        path : path.resolve(__dirname, 'functions' ,'public')
+        path : path.resolve(__dirname,'public')
     },
-    mode: "production",
+    mode: "development",
     module: {
         rules: [
             {
@@ -20,6 +21,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                exclude: /node_modules/,
                 use: [
                     'css-loader',
                     'style-loader'
@@ -27,6 +29,7 @@ module.exports = {
             },
             {
                 test: /\.s[ac]ss$/i,
+                exclude: /node_modules/,
                 use: [
                     // Creates `style` nodes from JS strings
                     'style-loader',
@@ -44,6 +47,7 @@ module.exports = {
             },
             {
                 test: /\.(png|jpe?g|gif)$/i,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: 'file-loader',
@@ -55,6 +59,7 @@ module.exports = {
             },
             {
                 test: /\.svg$/i,
+                exclude: /node_modules/,
                 use: [
                   {
                         loader: 'url-loader',
@@ -66,6 +71,7 @@ module.exports = {
             },
         ]
     },
+    plugins: [new HtmlWebpackPlugin()]
     // tell webpack to run babel on every file it runs through
 
 }

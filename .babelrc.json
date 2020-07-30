@@ -7,9 +7,7 @@
                 "targets": {
                     "chrome": "84",
                     "esmodules": true
-                },
-                "useBuiltIns": "entry",
-                "corejs": 3
+                }
             }
         ]
     ],
