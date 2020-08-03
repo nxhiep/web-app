@@ -18,6 +18,7 @@ export function getAppInfoFailed(error) {
     };
 }
 export function getAllAppInfo() {
+    console.log("action allAppInfo")
     return {
         type: Types.GET_ALL_APP_INFO,
     };

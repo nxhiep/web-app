@@ -1,5 +1,4 @@
 const path = require('path');
-var HtmlWebpackPlugin = require('html-webpack-plugin'); 
 const svgToMiniDataURI = require('mini-svg-data-uri');
 module.exports = {
 
@@ -11,7 +10,7 @@ module.exports = {
         filename : 'bundle.js',
         path : path.resolve(__dirname,'public')
     },
-    mode: "development",
+    mode: "production",
     module: {
         rules: [
             {
@@ -70,8 +69,7 @@ module.exports = {
                 ],
             },
         ]
-    },
-    plugins: [new HtmlWebpackPlugin()]
+    }
     // tell webpack to run babel on every file it runs through
 
 }

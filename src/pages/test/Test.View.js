@@ -76,7 +76,7 @@ class TestViewUI extends Component {
             isMobile: props.isMobile
         };
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         // auto show test
         if (this.state.isMobile && this.props.gameState.isLoaded === false && nextProps.gameState.isLoaded === true) {
             this.setState({

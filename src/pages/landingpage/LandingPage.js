@@ -7,8 +7,8 @@ import { onScrollToElement } from '../../models/Utils';
 import ImageHeader from '../../resources/images/landing-page-header.png';
 import '../../resources/scss/landing-page.scss';
 import '../../resources/scss/main.scss';
-import FeedbackApps from './FeedbackApps';
-import ListGreatApps from './ListGreatApps';
+import FeedbackApps, { loadDataFeedBack } from './FeedbackApps';
+import ListGreatApps, { loadListGreatApp } from './ListGreatApps';
 import StatictisApps from './StatictisApps';
 import ReactGA from 'react-ga';
 const LandingPage = () => {

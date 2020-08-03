@@ -8,14 +8,14 @@ import { stringToHtml } from "../../models/Utils";
 import { getTopicsByParentId } from "../../redux/actions";
 import { stringReplaceUrl } from "../../utils";
 const HomeContentUI = ({ parentId, appInfo, appNameId, topicState, getTopicsByParentId, hasState, onChangeState }) => {
-    // console.log("HomeContentUI parentId", parentId);
+    console.log(parentId)
     useEffect(() => {
         getTopicsByParentId(parentId);
     }, [parentId]);
     // console.log("topicState", topicState);
-    if (!topicState || topicState.loading === true || !topicState.data) {
-        return React.createElement(LoadingWidget, { color: null });
-    }
+    // if (!topicState || topicState.loading === true || !topicState.data) {
+    //     return React.createElement(LoadingWidget, { color: null });
+    // }
     let topics = [];
     let temp = Object.values(topicState.data);
     temp.forEach((topic) => {
@@ -29,9 +29,11 @@ const HomeContentUI = ({ parentId, appInfo, appNameId, topicState, getTopicsByPa
                 React.createElement("span", null,
                     "All categories ",
                     appInfo ? "of " + appInfo.appName : ""),
-                hasState ? React.createElement(Button, { variant: "outlined", color: "primary", onClick: () => {
+                hasState ? React.createElement(Button, {
+                    variant: "outlined", color: "primary", onClick: () => {
                         onChangeState();
-                    } }, "Change State") : ''),
+                    }
+                }, "Change State") : ''),
             React.createElement("hr", null),
             React.createElement("div", null,
                 React.createElement(Grid, { className: "content-panel", container: true, direction: "row" }, topics.map((t) => {

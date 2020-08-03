@@ -1,4 +1,5 @@
 import React from 'react';
+import localforage from 'localforage';
 export function shuffle(list) {
     return list.sort((a, b) => {
         let num = Math.floor(Math.random() * 101);
@@ -103,3 +104,15 @@ export function makeMainLoading() {
     return (React.createElement("div", { className: "main-loading" },
         React.createElement("div", { className: "lds-dual-ring" })));
 }
+export function checkInitState(store, stateServer) {
+    var archive = [];
+    localforage.getItem("persist:root")
+    .then(data => {
+        console.log("typeof  data" ,typeof(data));
+        console.log("data" , data)
+        console.log("json parse",JSON.parse(data))
+        console.log("data after replace ", data);
+        console.log("type of appInfoState" , typeof(data["appInfoState" ]));
+        console.log("data of appinfostate" , data["appInfoState"]);
+    })
+} 

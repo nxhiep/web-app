@@ -8,22 +8,21 @@ import { PersistGate } from 'redux-persist/integration/react';
 import App from './App.js';
 import configStore from './redux/store';
 import { register } from './serviceWorker';
-import { makeMainLoading } from './utils.js';
+import localforage from 'localforage';
+import { makeMainLoading, checkInitState } from './utils.js';
 import { BrowserRouter } from 'react-router-dom';
 const jss = create(Object.assign(Object.assign({}, jssPreset()), { insertionPoint: 'jss-insertion-point' }));
-const store = configStore();
+const store = configStore(window.__INITIAL_STATE__);
+
 ReactDOM.hydrate(
     <Provider store={store.store}>
         <PersistGate
             persistor={store.persistor}
             loading={makeMainLoading()}
         >
-            <StylesProvider jss={jss}>
-                <BrowserRouter>
-                    <App />
-                </BrowserRouter>
-
-            </StylesProvider>
+            <BrowserRouter>
+                <App></App>
+            </BrowserRouter>
         </PersistGate>
     </Provider>,
     document.getElementById('root')

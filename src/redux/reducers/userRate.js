@@ -11,34 +11,9 @@ const initState = {
 };
 const userRateState = (state = initState, action) => {
     var _a, _b;
+    console.log("userRate state test",state);
+    console.log("userRate state type test " ,action.type)
     switch (action.type) {
-        case REHYDRATE: {
-            if (action.payload) {
-                let list = (_a = action.payload.userRateState) === null || _a === void 0 ? void 0 : _a.list;
-                let perfectests = (_b = action.payload.userRateState) === null || _b === void 0 ? void 0 : _b.perfectest;
-                if (perfectests) {
-                    let listPerfect = [];
-                    perfectests.forEach((info) => {
-                        let userRate = UserRate.fromJS(info);
-                        listPerfect.push(userRate);
-                    });
-                    state.perfectest = listPerfect;
-                }
-                if (list) {
-                    let map = {};
-                    list.forEach((info) => {
-                        let userRate = UserRate.fromJS(info);
-                        if (!map[userRate.appId]) {
-                            map[userRate.appId] = [];
-                        }
-                        map[userRate.appId].push(userRate);
-                    });
-                    state.list = list;
-                    state.data = map;
-                }
-            }
-            return Object.assign({}, state);
-        }
         case Types.GET_USER_RATES: {
             return Object.assign(Object.assign({}, state), { loading: true, error: null });
         }
@@ -63,6 +38,7 @@ const userRateState = (state = initState, action) => {
             return Object.assign(Object.assign({}, state), { loading: true, error: null });
         }
         case Types.GET_USER_RATES_PERFECTEST_SUCCESS: {
+            console.log("userRates success reducer")
             if (action.data) {
                 state.perfectest = action.data;
             }

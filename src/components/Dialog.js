@@ -1,4 +1,4 @@
-import { IconButton } from '@material-ui/core';
+import { IconButton, useMediaQuery } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -9,6 +9,7 @@ import Slide from '@material-ui/core/Slide';
 import { Close as IconClose } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import {useTheme} from '@material-ui/core/styles'
 import { showImageDialog } from '../redux/actions/appValue';
 const Transition = React.forwardRef(function Transition(props, ref) {
     return React.createElement(Slide, Object.assign({ direction: "up", ref: ref }, props));
@@ -63,13 +64,14 @@ const AlertDialogSlide = ({ dialogInfo }) => {
             okText !== undefined ? React.createElement(Button, { onClick: handleAgree, color: "primary" }, okText ? okText : 'Ok') : '')));
 };
 const ShowImageUI = ({ appValueState, showImageDialog, }) => {
+    const theme = useTheme();
     const [open, setOpen] = useState(false);
     // console.log("******************* appValueState ", appValueState);
     useEffect(() => {
-        window.onpopstate = (e) => {
-            console.log("back button ************** open", open);
-            showImageDialog('');
-        };
+        // window.onpopstate = (e) => {
+        //     console.log("back button ************** open", open);
+        //     showImageDialog('');
+        // };
         if (appValueState.image && appValueState.image.length > 0) {
             setOpen(true);
         }
@@ -78,7 +80,7 @@ const ShowImageUI = ({ appValueState, showImageDialog, }) => {
         setOpen(false);
         showImageDialog('');
     };
-    let isMobile = window.innerWidth <= 500;
+    let isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     return (React.createElement(Dialog, { onClose: handleClose, "aria-labelledby": "simple-dialog-title", open: open },
         React.createElement("div", { style: { width: isMobile ? '100%' : 500, position: 'relative' } },
             React.createElement(IconButton, { onClick: handleClose, "aria-label": "close", style: { position: 'absolute', 'top': 0, right: '0' } },

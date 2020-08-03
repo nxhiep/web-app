@@ -4,12 +4,10 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import Image from '../../components/Image';
 import { FixedContainer, LoadingWidget, TitleBlock } from '../../components/Widgets';
-import { getAllAppInfo } from '../../redux/actions';
+// import { getAllAppInfo } from '../../redux/actions';
 import ReactGA from 'react-ga';
-const ListGreatApps = ({ getAllAppInfo = () => { }, appInfoState }) => {
-    useEffect(() => {
-        getAllAppInfo();
-    }, []);
+// import { getAllAppInfoSaga } from '../../redux/sagas/appInfo';
+const ListGreatApps = ({ appInfoState }) => {
     if (appInfoState.loading === true || !appInfoState.data) {
         return React.createElement(LoadingWidget, null);
     }
@@ -43,7 +41,8 @@ const AppInfoItem = ({ appInfo }) => {
 const mapStateToProps = (state, ownProps) => {
     return Object.assign({ appInfoState: state.appInfoState }, ownProps);
 };
-const mapDispatchToProps = (dispatch) => ({
-    getAllAppInfo: () => dispatch(getAllAppInfo()),
-});
-export default connect(mapStateToProps, mapDispatchToProps)(ListGreatApps);
+// const mapDispatchToProps = (dispatch) => ({
+//     getAllAppInfo: () => dispatch(getAllAppInfo()),
+// });
+// export {loadListGreatApp}
+export default connect(mapStateToProps)(ListGreatApps);
