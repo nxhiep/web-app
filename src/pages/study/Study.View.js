@@ -70,13 +70,16 @@ class StudyViewScreenUI extends Component {
             showAlertName: '',
             isMobile: props.isMobile
         };
+        console.log("id xxxxxxxxxxxxxxxxxxx appinfo",this.state.appInfo)
+        console.log("id              xxxxxxx" ,this.state.id)
         this.props.getTopicsByParentId(this.state.id);
     }
+    
     checkLoaded(prevState, nextState) {
         return (prevState.loading === true && nextState.loading === false && nextState.data) ||
             (prevState.loading === false && !isObjEmpty(prevState.data) && nextState.loading === false && !isObjEmpty(nextState.data));
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps (nextProps) {
         var _a;
         console.log('componentWillReceiveProps nextProps', Object.assign({}, this.props), Object.assign({}, nextProps));
         let topicState = nextProps.topicReducer;

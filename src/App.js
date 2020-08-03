@@ -2,14 +2,12 @@ import React from 'react';
 import { Route, Switch, useParams } from "react-router-dom";
 import Routes from './routes';
 import ReactGA from 'react-ga';
-import loadable from '@loadable/component';
 // import { createBrowserHistory } from 'history';
-import HomeViewScreen  from'./pages/home/Home.View';
-import LandingPageScreen from'./pages/landingpage/LandingPage';
-import ReviewViewScreen from'./pages/review/Review.View';
-import StudyViewScreen  from'./pages/study/Study.View';
-import TestViewScreen  from'./pages/test/Test.View';
-import GameViewScreen  from'./pages/game/Game.ViewTS';
+import HomeViewScreen from './pages/home/Home.View';
+import LandingPageScreen from './pages/landingpage/LandingPage';
+import ReviewViewScreen from './pages/review/Review.View';
+import StudyViewScreen from './pages/study/Study.View';
+import TestViewScreen from './pages/test/Test.View';
 initializeReactGA();
 function initializeReactGA() {
     ReactGA.initialize('UA-167769768-1');
@@ -20,17 +18,20 @@ function App() {
         // <Router >
         // <Suspense fallback={makeMainLoading()}>
         <Switch>
+        
             <Route exact path={"/:appNameId/:screen"} children={<ScreenChild />}></Route>
             <Route exact path={"/:appNameId"}>
                 <HomeViewScreen>
                 </HomeViewScreen>
             </Route>
-            <Route exact path={"/"}>    
+            <Route exact path={"/"} >
                 <LandingPageScreen />
-            </Route>
+            </Route >
         </Switch>
-    )           
+
+    )
 }
+// }
 function ScreenChild() {
     let { screen } = useParams();
     screen = screen !== null && screen !== void 0 ? screen : '';
@@ -45,9 +46,9 @@ function ScreenChild() {
         // console.log("TestViewScreen topicId ", topicId);
         return React.createElement(TestViewScreen, { topicId: topicId });
     }
-        if (screen.startsWith(Routes.REVIEW_SCREEN)) {
-            return React.createElement(ReviewViewScreen, null);
-        }
+    if (screen.startsWith(Routes.REVIEW_SCREEN)) {
+        return React.createElement(ReviewViewScreen, null);
+    }
     if (screen.length > 0) {
         return React.createElement(StudyViewScreen, null);
     }

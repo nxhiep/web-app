@@ -185,7 +185,7 @@ function* onChoiceSelected() {
     }
 }
 export const gameSaga = [
-    fork(startGameReload),
+    startGameReload(),
     onContinue(),
     onSaveGame(),
     onChoiceSelected(),

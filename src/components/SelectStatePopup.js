@@ -11,21 +11,10 @@ const SelectStatePopup = ({ stateInfoState, getStateInfo, setCurrentStateInfo, a
     console.log("SelectStatePopup stateInfoState", stateInfoState);
     const [open, setOpen] = useState(!stateInfoState.mapCurrentStateInfo[appInfo.id]);
     useEffect(() => {
-        if (appInfo.hasState) {
-            getStateInfo(appInfo.id);
-        }
-    }, [getStateInfo, appInfo]);
-    useEffect(() => {
         if (appInfo.hasState && openPopupChangeState) {
             setOpen(true);
             onScrollElementAtParentElement('.state-item.active', '.select-state-popup .MuiDialog-scrollPaper');
         }
-        // TODO
-        // let x = document.querySelector('[role="none presentation"]');
-        // console.log('none-presentation', x);
-        // if(x) {
-        //     x.setAttribute('role', 'dialog');
-        // }
     }, [openPopupChangeState, appInfo]);
     const handleClose = () => {
         setOpen(false);

@@ -18,6 +18,7 @@ export function getUserRateFailure(error) {
     };
 }
 export function getUserRatesPerfectest() {
+    console.log("actions userRates")
     return {
         type: Types.GET_USER_RATES_PERFECTEST,
     };

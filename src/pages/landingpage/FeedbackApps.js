@@ -6,7 +6,7 @@ import Slider from "react-slick";
 import { FixedContainer, LoadingWidget, TitleBlock } from '../../components/Widgets';
 import { getUserRatesPerfectest } from '../../redux/actions';
 import { formatDate } from '../../utils';
-import {  withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 const FeedbackAppsUI = ({ getUserRatesPerfectest, userRateState, theme }) => {
     // const theme = useTheme();
@@ -19,9 +19,9 @@ const FeedbackAppsUI = ({ getUserRatesPerfectest, userRateState, theme }) => {
         slidesToScroll: isMobile ? 1 : 3,
         className: "feedback-slider",
     };
-    useEffect(() => {
-        getUserRatesPerfectest();
-    }, []);
+    // useEffect(() => {
+    //     getUserRatesPerfectest();
+    // }, []);
     let userRates = [];
     for (let i = 0; i < userRateState.perfectest.length; i++) {
         if (i < 6) {
@@ -31,15 +31,29 @@ const FeedbackAppsUI = ({ getUserRatesPerfectest, userRateState, theme }) => {
             break;
         }
     }
-    console.log("XXXXX userRates", userRates);
-    return (React.createElement("section", { className: "feedback-apps" },
-        React.createElement(FixedContainer, null,
-            React.createElement(TitleBlock, { title: "What our clients say" }),
-            React.createElement(Slider, Object.assign({}, settings), userRates && userRates.length > 0 ? userRates.map((userRate) => {
-                return React.createElement(FeedbackItem, { key: "FeedbackItem-" + userRate.id, 
-                    // value={userRate.rateValue}
-                    value: 5, content: userRate.content, name: userRate.userName, createTime: userRate.createDate });
-            }) : React.createElement(LoadingWidget, null)))));
+    return (
+        <section className="feedback-apps">
+            <FixedContainer>
+                <TitleBlock
+                    title="What our clients say"
+                />
+                <Slider {...settings}>
+                    {
+                        userRates.map((userRate) => {
+                            return <FeedbackItem
+                                key={"FeedbackItem-" + userRate.id}
+                                // value={userRate.rateValue}
+                                value={5}
+                                content={userRate.content}
+                                name={userRate.userName}
+                                createTime={userRate.createDate}
+                            />
+                        })
+                    }
+                </Slider>
+            </FixedContainer>
+        </section>
+    );
 };
 const FeedbackItem = ({ value = 0, content = '', name = '', createTime = 0, }) => {
     return (React.createElement("div", { className: "feedback-item" },
@@ -59,4 +73,8 @@ const mapStateToPropsUserRate = (state, ownProps) => {
 const mapDispatchToPropsUserRate = (dispatch) => ({
     getUserRatesPerfectest: () => dispatch(getUserRatesPerfectest()),
 });
+const loadDataFeedBack = (store) => {
+    return store.dispatch(getUserRatesPerfectest());
+}
+export { loadDataFeedBack }
 export default connect(mapStateToPropsUserRate, mapDispatchToPropsUserRate)(withTheme(FeedbackAppsUI));

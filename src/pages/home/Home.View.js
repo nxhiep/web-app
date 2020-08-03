@@ -1,5 +1,5 @@
 import { Button, Collapse, Grid } from '@material-ui/core';
-import {  withTheme } from '@material-ui/core/styles';
+import { withTheme } from '@material-ui/core/styles';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
 import Rating from '@material-ui/lab/Rating';
 import React, { useEffect, useState } from 'react';
@@ -38,6 +38,7 @@ const HomeViewScreen = ({ appInfoState, getAppInfo, stateInfoState , theme}) => 
         }
     }, []);
     let appInfo = appInfoState.data[appNameId];
+    console.log("AppInfo in home view" , appInfo)
     useEffect(() => {
         if (appInfo) {
             setSEOContent({
@@ -60,13 +61,13 @@ const HomeViewScreen = ({ appInfoState, getAppInfo, stateInfoState , theme}) => 
         <MainWidget>
             <Header alt={appInfo.appName ?? appInfo.title} />
             <AppInfoWidget appNameId={appNameId} />
-                <HomeContent
-                    parentId={parentId} appNameId={appNameId}
-                    hasState={appInfo && appInfo.hasState}
-                    onChangeState={() => {
-                        setOpenPopupChangeState(true);
-                    }}
-                />
+            <HomeContent
+                parentId={parentId} appNameId={appNameId}
+                hasState={appInfo && appInfo.hasState}
+                onChangeState={() => {
+                    setOpenPopupChangeState(true);
+                }}
+            />
             <Footer alt={appInfo.appName ?? appInfo.title} />
             {appInfo && appInfo.hasState ?
                 <SelectStatePopup

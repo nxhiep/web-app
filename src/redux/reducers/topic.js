@@ -1,4 +1,4 @@
-// import { REHYDRATE } from 'redux-persist';
+import { REHYDRATE } from 'redux-persist';
 import Topic from "../../models/Topic";
 import * as Types from "../actions/types";
 import { replaceItem } from "../../utils";
@@ -13,23 +13,22 @@ const topicReducer = (state = InitialTopisState, action) => {
     // console.log("topicReducer FFFFFFFFFFFFFFFFFFF ", state, action);
     let mapTopic = (_a = state.data) !== null && _a !== void 0 ? _a : {};
     switch (action.type) {
-        // case REHYDRATE: {
-        //     // console.log("topicReducer REHYDRATE gggggggg", Object.assign({}, action.payload));
-        //     if (action.payload && action.payload['topicReducer']) {
-        //         let list = action.payload['topicReducer']['list'];
-        //         // console.log("topicReducer ffffffff", Object.assign({}, list));
-        //         if (list) {
-        //             list.forEach((t) => {
-        //                 let topic = Topic.fromJS(t);
-        //                 mapTopic[topic.id] = topic;
-        //             });
-        //             state.loading = true;
-        //             state.data = mapTopic;
-        //             state.list = list;
-        //         }
-        //     }
-            // return Object.assign({}, state);
-        // }
+        case REHYDRATE: {
+            // console.log("topicReducer REHYDRATE gggggggg", Object.assign({}, action.payload));
+            if (action.payload && action.payload['topicReducer']) {
+                let list = action.payload['topicReducer']['list'];
+                // console.log("topicReducer ffffffff", Object.assign({}, list));
+                if (list) {
+                    list.forEach((t) => {
+                        let topic = Topic.fromJS(t);
+                        mapTopic[topic.id] = topic;
+                    });
+                    state.data = mapTopic;
+                    state.list = list;
+                }
+            }
+            return Object.assign({}, state);
+        }
         case Types.GET_TOPICS_BY_PARENT_ID: {
             return Object.assign(Object.assign({}, state), { loading: true });
         }

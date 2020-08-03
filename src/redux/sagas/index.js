@@ -1,7 +1,7 @@
 import { userRateSaga } from './userRate';
 import { stateInfoSaga } from './stateInfo';
 import { appInfoSaga } from './appInfo';
-import { all } from 'redux-saga/effects';
+import { all ,} from 'redux-saga/effects';
 import { cardsProgressSaga } from './cardProgressSaga';
 import { cardsSaga } from './cardSaga';
 import { gameSaga } from './game';
@@ -16,6 +16,6 @@ export default function* rootSaga() {
         ...topicsProgressSaga,
         ...appInfoSaga,
         ...stateInfoSaga,
-        ...userRateSaga
+        ...userRateSaga,
     ]);
 }

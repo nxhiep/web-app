@@ -20,7 +20,7 @@ const callApi = ({ method, url, params }) => {
             method: method ? method : 'POST',
             data: params ? params : null
         }).then(response => {
-            console.log("ket qua server tra ve Hiep sida:", response);
+            // console.log("ket qua server tra ve Hiep sida:", response);
             if (response.status === Config.HTTP_REQUEST_SUCCESSS) {
                 resolve(response.data);
             }

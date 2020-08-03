@@ -68,7 +68,7 @@ class ReviewViewScreenUI extends Component {
     componentDidMount() {
         this.props.getAllCardProgress();
     }
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (!checkLoadedReceiveProps(this.props.cardProgressReducer, nextProps.cardProgressReducer)) {
             let reviewProgress = getReviewProgress(this.props.cardProgressReducer);
             if (this.state.levelId == -1) {
